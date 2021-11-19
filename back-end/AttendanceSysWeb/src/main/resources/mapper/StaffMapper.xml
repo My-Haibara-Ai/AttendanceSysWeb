@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zmy.demo.repository.StaffMapper">
+    <select id="selectByUserId" resultType="com.zmy.demo.bean.StaffEntity">
+        select *
+        from staff
+        where user_id=#{userId}
+    </select>
+
+    <select id="selectAll" resultType="com.zmy.demo.bean.StaffEntity">
+        select *
+        from staff
+        order by user_id
+        limit #{start},#{num}
+    </select>
+
+    <select id="selectUserIds" resultType="String">
+        select user_id
+        from staff
+        limit #{start}, #{num}
+    </select>
+
+    <select id="getNumOfAll" resultType="int">
+        select count(*) 
+        from staff
+    </select>
+
+    <select id="getDepartIdByUserId" resultType="int">
+        select depart_id 
+        from staff
+        where user_id=#{userId}
+    </select>
+        
+    <insert id="insert">
+        insert into staff values
+        (#{staff.userId}, #{staff.userName}, #{staff.sex}, #{staff.email},
+                #{staff.age}, #{staff.employed}, #{staff.departId}
+        )
+    </insert>
+
+    <delete id="deleteByUserId">
+        delete from staff
+        where user_id=#{userId}
+    </delete>
+
+    <update id="updateByUserId">
+        update staff
+        set user_name=#{staff.userName},
+            sex=#{staff.sex},
+            email=#{staff.email},
+            age=#{staff.age},
+            employed=#{staff.employed},
+            depart_id=#{staff.departId}
+        where user_id=#{userId}
+    </update>
+</mapper>

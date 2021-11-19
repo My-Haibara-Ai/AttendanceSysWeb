@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmy.demo.repository.VacationMapper">
+    <select id="selectAll" resultType="com.zmy.demo.bean.VacationEntity">
+        select *
+        from vacation
+        limit #{start}, #{num}
+    </select>
+
+    <select id="selectByUserId" resultType="com.zmy.demo.bean.VacationEntity">
+        select *
+        from vacation
+        where user_id=#{userId}
+    </select>
+
+    <select id="selectByStatusId" resultType="com.zmy.demo.bean.VacationEntity">
+        select *
+        from vacation
+        where status_id=#{statusId}
+        limit #{start}, #{num}
+    </select>
+
+    <select id="selectByDepartId" resultType="com.zmy.demo.bean.VacationEntity">
+        select *
+        from vacation
+        where depart_id=#{departId}
+        limit #{start}, #{num}
+    </select>
+
+    <select id="selectForManager" resultType="com.zmy.demo.bean.VacationEntity">
+        select *
+        from vacation
+        where depart_id=#{departId} and status_id=#{statusId}
+        limit #{start}, #{num}
+    </select>
+
+    <select id="getNumOfAll" resultType="int">
+        select count(*) 
+        from vacation
+    </select>
+
+    <select id="getNumByStatusId" resultType="int">
+        select count(*) 
+        from vacation
+        where status_id=#{statusId}
+    </select>
+
+    <select id="getNumByDepartId" resultType="int">
+        select count(*) 
+        from vacation
+        where depart_id=#{departId}
+    </select>
+
+    <select id="getNumForManager" resultType="int">
+        select count(*) 
+        from vacation
+        where depart_id=#{departId} and status_id=#{statusId}
+    </select>
+
+    <update id="setStatusIdByUserId">
+        update vacation
+        set status_id=#{statusId}
+        where user_id=#{userId}
+    </update>
+
+    <delete id="deleteByUserId">
+        delete from vacation
+        where user_id=#{userId}
+    </delete>
+
+    <insert id="insert">
+        insert into vacation
+        values
+        (#{vac.userId}, #{vac.userName}, #{vac.typeId}, #{vac.statusId},#{vac.departId},
+                #{vac.startDate}, #{vac.startTime}, #{vac.endDate}, #{vac.endTime}, #{vac.vacLong}, #{vac.reason})
+    </insert>
+</mapper>

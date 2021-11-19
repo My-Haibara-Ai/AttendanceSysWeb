@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zmy.demo.repository.SignMapper">
+    <select id="selectInByDate" resultType="com.zmy.demo.bean.SignEntity">
+        select *
+        from sign_in
+        where user_id=#{userId}
+            and time_year=#{year}
+            and time_month=#{month}
+            and time_day=#{day}
+    </select>
+
+    <select id="selectOutByDate" resultType="com.zmy.demo.bean.SignEntity">
+        select *
+        from sign_out
+        where user_id=#{userId}
+            and time_year=#{year}
+            and time_month=#{month}
+            and time_day=#{day}
+    </select>
+
+    <insert id="insertSignIn">
+        insert into sign_in
+        values
+        (#{sign.userId}, #{sign.year}, #{sign.month},
+                #{sign.day}, #{sign.hour}, #{sign.minute}
+        )
+    </insert>
+
+    <insert id="insertSignOut">
+        insert into sign_out
+        values
+        (#{sign.userId}, #{sign.year}, #{sign.month},
+                #{sign.day}, #{sign.hour}, #{sign.minute}
+        )
+    </insert>
+</mapper>

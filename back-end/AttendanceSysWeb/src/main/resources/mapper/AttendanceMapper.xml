@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmy.demo.repository.AttendanceMapper">
+    <select id="selectByUserId" resultType="com.zmy.demo.bean.Attendance">
+        select *
+        from attendance
+        where user_id=#{userId}
+    </select>
+
+    <update id="update">
+        update attendance
+        set work_hour=#{attendance.workHour},
+            paid=#{attendance.paid},
+            unpaid=#{attendance.unpaid},
+            valid=#{attendance.valid}
+        where user_id=#{userId}
+    </update>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zmy.demo.repository.RemainingMapper">
+    <select id="selectByUserId" resultType="com.zmy.demo.bean.Remaining">
+        select *
+        from remaining
+        where user_id=#{userId}
+    </select>
+
+    <update id="updateByUserId">
+        update remaining
+        set
+        annual = #{remaining.annual},
+        sick = #{remaining.sick},
+        check_up = #{remaining.checkUp},
+        maternity = #{remaining.maternity},
+        feeding = #{remaining.feeding},
+        paternity = #{remaining.paternity},
+        affair = #{remaining.affair}
+        where user_id=#{userId}
+    </update>
+</mapper>
